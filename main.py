@@ -57,3 +57,35 @@ def get_products_list():
             break
 
     return all_products_list
+
+
+def processing_list_products(all_products_list):
+    products_info_list = []
+
+    for product in all_products_list:
+        product_id = product.get("id")
+        product_name = product.get("title")
+        product_code = product.get("code")
+        product_price = product.get("price", {}).get("value")
+        product_currency = product.get("price", {}).get("currency")
+
+        old_price_data = product.get("oldPrice", {})
+        product_old_price = old_price_data.get("value") if old_price_data else None
+
+        product_brand_name = product.get("brand", {}).get("name")
+
+        product_link = f"https://www.auchan.ru/product/{product_code}/"
+
+        processed_product = {
+            "id": product_id,
+            "name": product_name,
+            "link": product_link,
+            "oldPrice": product_old_price,
+            "price": {"value": product_price, "currency": product_currency},
+            "brand": {
+                "name": product_brand_name,
+            },
+        }
+        products_info_list.append(processed_product)
+
+    return products_info_list
