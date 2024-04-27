@@ -89,3 +89,19 @@ def processing_list_products(all_products_list):
         products_info_list.append(processed_product)
 
     return products_info_list
+
+
+if __name__ == "__main__":
+    all_products_list = get_products_list()
+
+    if all_products_list:
+        products_info_list = processing_list_products(all_products_list)
+
+        json_data = json.dumps(products_info_list, ensure_ascii=False, indent=2)
+
+        with open("products_info_list.json", "w", encoding="utf-8") as json_file:
+            json_file.write(json_data)
+
+        print("Информация о продуктах успешно записана в products_info_list.json")
+    else:
+        print("Запрос информации о товарах не удался.")
