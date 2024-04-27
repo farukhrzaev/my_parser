@@ -29,7 +29,7 @@ def get_products_list():
             "cashback_only": False,
         },
         "page": 1,
-        "perPage": 100,  # количество товара которое нужно вывести
+        "perPage": 100,
         "merchantId": 1,
     }
 
@@ -102,6 +102,6 @@ if __name__ == "__main__":
         with open("products_info_list.json", "w", encoding="utf-8") as json_file:
             json_file.write(json_data)
 
-        print("Информация о продуктах успешно записана в products_info_list.json")
+        print("Information about the products has been successfully written to products_info_list.json.")
     else:
-        print("Запрос информации о товарах не удался.")
+        print("The request for product information failed.")
